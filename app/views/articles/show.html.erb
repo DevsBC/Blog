@@ -1,9 +1,19 @@
-<h1><%= @article.title %></h1>
+<div class="large-container center-block">
 
-<div>
-    <%= @article.content %>
-</div>
+    <h1><%= @article.title %></h1>
 
-<div>
-<%= link_to 'Eliminar articulo', @article, method: :delete %>
+    <div>
+        <p>Escrito por: <strong><%= @article.user.email %></strong></p>
+    </div>
+
+    <div>
+        <%= @article.content %>
+    </div>
+
+    <% if current_user == @article.user %>
+        <div>
+            <%= link_to 'Eliminar articulo', @article, method: :delete %>
+            <%= link_to 'Editar articulo', edit_article_path(@article) %>
+        </div>
+    <%end%>
 </div>
